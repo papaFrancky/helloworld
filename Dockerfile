@@ -1,6 +1,7 @@
-FROM ubuntu:14.04
-COPY src /home/root/helloworld/src
-RUN apt-get update
-RUN apt-get -y install php5
-WORKDIR /home/root/helloworld
-ENTRYPOINT [ "php", "./src/HelloWorld.php" ]
+FROM java:7
+COPY src /home/root/javahelloworld/src
+WORKDIR /home/root/javahelloworld
+RUN mkdir bin
+RUN javac -d bin src/HelloWorld.java
+ENTRYPOINT ["java", "-cp", "bin", "HelloWorld"]
+
